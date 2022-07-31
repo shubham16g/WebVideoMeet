@@ -37,6 +37,10 @@ async function createRoom() {
 
   registerPeerConnectionListeners();
 
+  // Add code for creating a room here
+  
+  // Code for creating room above
+  
   localStream.getTracks().forEach(track => {
     peerConnection.addTrack(track, localStream);
   });
@@ -184,9 +188,36 @@ async function joinRoomById(roomId) {
   }
 }
 
+async function getAVStream() { 
+  try {
+    return await navigator.mediaDevices.getUserMedia(
+      { video: true, audio: true });
+  } catch (error) {
+    console.log(error);
+  }
+}
+async function getAStream() {
+  try {
+    return await navigator.mediaDevices.getUserMedia(
+      { video: false, audio: true });
+  } catch (error) {
+    console.log(error);
+  }
+ }
+async function getVStream() {
+  try {
+    return await navigator.mediaDevices.getUserMedia(
+      { video: true, audio: false });
+  } catch (error) {
+    console.log(error);
+  }
+ }
+
+
 async function openUserMedia(e) {
-  const stream = await navigator.mediaDevices.getUserMedia(
-      {video: true, audio: true});
+  console.log('try to get');
+  var stream = await getVStream();
+  console.log('got stream');
   document.querySelector('#localVideo').srcObject = stream;
   localStream = stream;
   remoteStream = new MediaStream();
