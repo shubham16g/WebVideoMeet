@@ -23,8 +23,19 @@ function init() {
   document.querySelector('#hangupBtn').addEventListener('click', hangUp);
   document.querySelector('#createBtn').addEventListener('click', createRoom);
   document.querySelector('#joinBtn').addEventListener('click', joinRoom);
+  document.querySelector('#pauseBtn').addEventListener('click', pause);
   roomDialog = new mdc.dialog.MDCDialog(document.querySelector('#room-dialog'));
 }
+
+function pause() {
+  var status;
+  localStream.getTracks().forEach(e => {
+    e.enabled = !e.enabled
+    status = e.enabled
+  })
+  return status
+}
+
 
 async function createRoom() {
   document.querySelector('#createBtn').disabled = true;
@@ -228,6 +239,7 @@ async function openUserMedia(e) {
   document.querySelector('#joinBtn').disabled = false;
   document.querySelector('#createBtn').disabled = false;
   document.querySelector('#hangupBtn').disabled = false;
+  document.querySelector('#pauseBtn').disabled = false;
 }
 
 async function hangUp(e) {
