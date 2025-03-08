@@ -4,4 +4,4 @@
 See http://webrtc.org for details.
 
 Demo:
-https://shubham-gupta-16.github.io/WebVideoMeet/
+https://shubham16g.github.io/WebVideoMeet/
